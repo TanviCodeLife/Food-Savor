@@ -7,6 +7,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -18,7 +19,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    PreferencesComponent
+    PreferencesComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
