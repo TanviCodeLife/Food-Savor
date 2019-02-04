@@ -1,0 +1,13 @@
+<h1>Preferences</h1>
+<p>Define your preferences and your future searches will reflect.</p>
+
+<h2>Health</h2>
+<!-- Health labels: “vegan”, “vegetarian”, “dairy-free”, “low-sugar”, “low-fat-abs”, “sugar-conscious”, “fat free”, “gluten free”, “wheat free” -->
+
+
+<h2>Allergies</h2>
+
+<div *ngFor="let allergy of allergies">
+  <input type="checkbox" [name]="allergy.code" [value]="allergy.code">
+  <label [for]="allergy.code">{{allergy.name}}</label>
+</div>
