@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipeApiService.getByIngredients("tomato", "vegan").subscribe(response => {
+    this.recipeApiService.getByIngredients("tomato", "vegan", "low-fat").subscribe(response => {
       this.responseApi = response.json();
       console.log(this.responseApi);
     });
