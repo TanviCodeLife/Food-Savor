@@ -7,6 +7,7 @@ import { RecipeApiService } from '../recipe-api.service';
   styleUrls: ['./recipe-form.component.css'],
   providers: [ RecipeApiService ]
 })
+
 export class RecipeFormComponent implements OnInit {
   healths: Preference = [
     {"code": "vegan", "name": "Vegan", "checked": false},
@@ -27,6 +28,7 @@ export class RecipeFormComponent implements OnInit {
   private responseApi: Object;
 
   constructor(private recipeApiService: RecipeApiService) { }
+    recipes: any[] = null;
 
   ngOnInit() {
   }
@@ -59,8 +61,8 @@ export class RecipeFormComponent implements OnInit {
 
   getRecipes(ingredients: string, health: string, diet: string)  {
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
-      this.responseApi = response.json();
-      console.log(this.responseApi);
+      this.recipes = response.json().hits;
+      // console.log(this.responseApi);
     });
   }
 
