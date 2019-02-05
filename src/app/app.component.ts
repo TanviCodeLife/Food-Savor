@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   user;
   private isLoggedIn: Boolean;
   private userName: String;
-  private responseApi: Object;
+
 
   constructor(private authService: AuthService, private recipeApiService: RecipeApiService) {
     this.authService.user.subscribe(user => {
@@ -26,10 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
-      this.responseApi = response.json();
-      console.log(this.responseApi);
-    });
+
   }
 
   login() {

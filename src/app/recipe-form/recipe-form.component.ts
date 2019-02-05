@@ -24,7 +24,9 @@ export class RecipeFormComponent implements OnInit {
   ]
   apiDiet: string[] = [];
   apiHealth: string[] = [];
-  constructor() { }
+  private responseApi: Object;
+
+  constructor(private recipeApiService: RecipeApiService) { }
 
   ngOnInit() {
   }
@@ -47,31 +49,61 @@ export class RecipeFormComponent implements OnInit {
     console.log("healths" + this.healths);
   }
 
-  // updatePreference(value){
-  //   for (let i = 0; i < this.preferences.length; i++) {
-  //     if (this.preferences[i].code === value) {
-  //       this.preferences[i].checked = !this.preferences[i].checked;
-  //     }
-  //   }
-  //   console.log("preferences" + this.preferences);
-  // }
-
-  createApiCode() {
+  createDietCode(){
     this.apiDiet = [];
-    this.apiHealth = [];
     for (let i = 0; i < this.diets.length; i++) {
       if (this.diets[i].checked === true) {
         this.apiDiet.push(this.diets[i].code)
       }
     }
     console.log("Diet: " + this.apiDiet);
+    return this.apiDiet;
+  }
 
+  createHealthCode(){
+    this.apiHealth = [];
     for (let i = 0; i < this.healths.length; i++) {
       if (this.healths[i].checked === true) {
         this.apiHealth.push(this.healths[i].code)
       }
     }
     console.log("Health: " + this.apiHealth);
+    return this.apiHealth;
+  }
+
+
+
+  createApiCode(ingredients: string) {
+    let regex = /\s/gi;
+    let dietCodeStr: string;
+    let healthCodeStr: string;
+
+    const dietCode: string[] = this.createDietCode();
+    if(dietCode.length === 0){
+      dietCodeStr = null;
+    } else {
+      dietCodeStr = dietCode.join(",");
+    }
+
+    const healthCode: string[] = this.createHealthCode();
+    if(healthCode.length === 0){
+      healthCodeStr = null;
+    } else {
+      healthCodeStr = healthCode.join(",");
+    }
+
+    console.log(ingredients);
+    let result = ingredients.replace(regex, '+');
+    console.log(result);
+
+    this.getRecipes(result, healthCodeStr, dietCodeStr);
+  }
+
+  getRecipes(ingredients: string, health: string, diet: string)  {
+    this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
+      this.responseApi = response.json();
+      console.log(this.responseApi);
+    });
   }
 
 }
