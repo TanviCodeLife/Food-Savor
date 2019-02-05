@@ -11,7 +11,7 @@ import { RecipeApiService } from '../recipe-api.service';
 export class RecipeListComponent implements OnInit {
   private recipes: object[];
   private responseApi: Object;
-  favorites: string[] = [];
+  favorites: Favorite = [];
 
   constructor(private recipeApiService: RecipeApiService) { }
 
@@ -22,9 +22,11 @@ export class RecipeListComponent implements OnInit {
     });
   }
 
-  favorite(name: string, url: string){
-    this.favorites.push([name, url]);
-    console.log(this.favorites)
+  favorite(favoriteName: string, favoriteUrl: string){
+    this.favorites.push({name: favoriteName, url: favoriteUrl});
+    console.log(this.favorites);
   }
 
 }
+
+type Favorite = Array<{name: string, url: string}>;
