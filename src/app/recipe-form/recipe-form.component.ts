@@ -60,6 +60,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   getRecipes(ingredients: string, health: string, diet: string)  {
+    this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
       this.recipes = response.json().hits;
       // console.log(this.responseApi);
@@ -67,9 +68,10 @@ export class RecipeFormComponent implements OnInit {
   }
 
   createApiCode(ingredients: string) {
+    this.apiDiet = [];
+    this.apiHealth = [];
     let regex = /\s/gi;
     let result = ingredients.replace(regex, '+');
-
     const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
     const dietCodeStr: string = this.findEmptyValues(dietCode);
     const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
