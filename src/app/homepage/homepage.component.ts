@@ -11,6 +11,10 @@ export class HomepageComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  getFavorites(){
+    this.authService.getFavorites();
+  }
+
   ngOnInit() {
   }
 

@@ -13,7 +13,6 @@ export class AuthService {
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
     this.user.subscribe(response => {
-      console.log(response.uid);
       this.favorites = database.list(`favorites/${response.uid}`)
     })
    }
@@ -35,6 +34,14 @@ export class AuthService {
 
   addFavorite(favoriteRecipe: Recipe){
     this.favorites.push(favoriteRecipe);
+  }
+
+  getFavorites(){
+    this.favorites.subscribe(response => {
+      console.log(response)
+    })
+    // console.log(this.favorites);
+    return this.favorites;
   }
 
   getUser(){
