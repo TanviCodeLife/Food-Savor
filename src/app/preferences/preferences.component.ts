@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-preferences',
@@ -19,20 +21,49 @@ export class PreferencesComponent implements OnInit {
     {"code": "sugar-conscious", "name": "Sugar conscious", "checked": false},
     {"code": "alcohol-free", "name": "Alcohol free", "checked": false}
   ];
+  userPreferences;
 
-  constructor(private authService: AuthService) { }
+  constructor(private database: AngularFireDatabase, private authService: AuthService) {
+
+  }
 
   ngOnInit() {
+    let user = this.authService.getUser();
+    user.subscribe(user => {
+       this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
+        if (preferenceList.length === 0) {
+          this.authService.updatePreferences(this.preferences);
+        }
+        this.userPreferences = preferenceList;
+      });
+    });
   }
 
   updatePreference(value){
-    for (let i = 0; i < this.preferences.length; i++) {
-      if (this.preferences[i].code === value) {
-        this.preferences[i].checked = !this.preferences[i].checked;
-      }
-    }
-    console.log(this.preferences);
-    this.authService.updatePreferences(this.preferences);
+    let user = this.authService.getUser();
+    user.subscribe(user => {
+      this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
+        for (let i = 0; i < preferenceList.length; i++) {
+          if (preferenceList[i].code === value) {
+            if (preferenceList[i].checked === true) {
+              // preferenceList[i].update("checked": false);
+            } else if (preferenceList[i].checked === false) {
+              // preferenceList[i].update("checked": true);
+            }
+          }
+        }
+        this.authService.updatePreferences(this.userPreferences);     });
+
+    });
+
   }
 
+  getPreferences(){
+    let user = this.authService.getUser();
+    user.subscribe(user => {
+       this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
+        this.userPreferences = preferenceList;
+      });
+    });
+  }
 }

@@ -12,8 +12,6 @@ export class AuthService {
    }
 
   login() {
-    let email: string = "hcb110@humboldt.edu";
-    let password: string = "12345s";
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
@@ -25,8 +23,11 @@ export class AuthService {
     this.user.subscribe(user => {
       let userPreference = this.database.object(`preferences/${user.uid}`)
       userPreference.set(preferences);
-      console.log(user.uid);
     })
+  }
+
+  getUser(){
+    return this.user
   }
 
 

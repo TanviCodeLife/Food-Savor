@@ -16,7 +16,6 @@ export class HomepageComponent implements OnInit {
   }
 
   showPreferences(){
-    console.log(this.authService.user);
     this.authService.user.subscribe(user => {
       if (user === null) {
         this.authService.login();
