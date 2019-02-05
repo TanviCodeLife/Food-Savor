@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
 
 @Component({
@@ -9,17 +9,17 @@ import { RecipeApiService } from '../recipe-api.service';
 })
 
 export class RecipeListComponent implements OnInit {
-  private recipes: object[];
+  @Input() recipes: any[];
   private responseApi: Object;
   favorites: Favorite = [];
 
   constructor(private recipeApiService: RecipeApiService) { }
 
   ngOnInit() {
-    this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
-      this.responseApi = response.json();
-      this.recipes = this.responseApi.hits;
-    });
+    // this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
+    //   this.responseApi = response.json();
+    //   this.recipes = this.responseApi.hits;
+    // });
   }
 
   favorite(favoriteName: string, favoriteUrl: string){

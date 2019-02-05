@@ -7,6 +7,7 @@ import { RecipeApiService } from '../recipe-api.service';
   styleUrls: ['./recipe-form.component.css'],
   providers: [ RecipeApiService ]
 })
+
 export class RecipeFormComponent implements OnInit {
   healths: Preference = [
     {"code": "vegan", "name": "Vegan", "checked": false},
@@ -27,6 +28,7 @@ export class RecipeFormComponent implements OnInit {
   private responseApi: Object;
 
   constructor(private recipeApiService: RecipeApiService) { }
+    recipes: any[] = null;
 
   ngOnInit() {
   }
@@ -58,16 +60,18 @@ export class RecipeFormComponent implements OnInit {
   }
 
   getRecipes(ingredients: string, health: string, diet: string)  {
+    this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
-      this.responseApi = response.json();
-      console.log(this.responseApi);
+      this.recipes = response.json().hits;
+      // console.log(this.responseApi);
     });
   }
 
   createApiCode(ingredients: string) {
+    this.apiDiet = [];
+    this.apiHealth = [];
     let regex = /\s/gi;
     let result = ingredients.replace(regex, '+');
-
     const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
     const dietCodeStr: string = this.findEmptyValues(dietCode);
     const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
