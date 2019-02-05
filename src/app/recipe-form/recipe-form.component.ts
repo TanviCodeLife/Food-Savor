@@ -48,27 +48,36 @@ export class RecipeFormComponent implements OnInit {
     }
     console.log("healths" + this.healths);
   }
+  //
+  // createDietCode(){
+  //   this.apiDiet = [];
+  //   for (let i = 0; i < this.diets.length; i++) {
+  //     if (this.diets[i].checked === true) {
+  //       this.apiDiet.push(this.diets[i].code)
+  //     }
+  //   }
+  //   console.log("Diet: " + this.apiDiet);
+  //   return this.apiDiet;
+  // }
+  //
+  // createHealthCode(){
+  //   this.apiHealth = [];
+  //   for (let i = 0; i < this.healths.length; i++) {
+  //     if (this.healths[i].checked === true) {
+  //       this.apiHealth.push(this.healths[i].code)
+  //     }
+  //   }
+  //   console.log("Health: " + this.apiHealth);
+  //   return this.apiHealth;
+  // }
 
-  createDietCode(){
-    this.apiDiet = [];
-    for (let i = 0; i < this.diets.length; i++) {
-      if (this.diets[i].checked === true) {
-        this.apiDiet.push(this.diets[i].code)
+  createPreferencesArray(finalPref: string[], preferenceCheck: Preference ){
+    for(let i = 0; i < preferenceCheck.length; i++){
+      if(preferenceCheck[i].checked === true) {
+        finalPref.push(preferenceCheck[i].code)
       }
     }
-    console.log("Diet: " + this.apiDiet);
-    return this.apiDiet;
-  }
-
-  createHealthCode(){
-    this.apiHealth = [];
-    for (let i = 0; i < this.healths.length; i++) {
-      if (this.healths[i].checked === true) {
-        this.apiHealth.push(this.healths[i].code)
-      }
-    }
-    console.log("Health: " + this.apiHealth);
-    return this.apiHealth;
+    return finalPref;
   }
 
 
@@ -78,14 +87,14 @@ export class RecipeFormComponent implements OnInit {
     let dietCodeStr: string;
     let healthCodeStr: string;
 
-    const dietCode: string[] = this.createDietCode();
+    const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
     if(dietCode.length === 0){
       dietCodeStr = null;
     } else {
       dietCodeStr = dietCode.join(",");
     }
 
-    const healthCode: string[] = this.createHealthCode();
+    const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
     if(healthCode.length === 0){
       healthCodeStr = null;
     } else {
