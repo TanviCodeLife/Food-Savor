@@ -18,3 +18,10 @@
   </div>
 
 </form> -->
+
+<div *ngFor="let preference of preferences">
+  <input type="checkbox" [name]="preference.code" [value]="preference.code" (change)="updatePreference(preference.code)">
+  <label [for]="preference.code">{{preference.name}} </label>
+</div>
+
+<p (click)="createApiCode()">Submit</p>
