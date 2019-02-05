@@ -4,11 +4,11 @@
     <input type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
   </div>
 <div *ngFor="let diet of diets">
-  <input type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updateDiet(diet.code)">
+  <input type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updatePref(diet.code, diets)">
   <label [for]="diet.code">{{diet.name}} </label>
 </div>
 <div *ngFor="let health of healths">
-  <input type="checkbox" [name]="health.code" [value]="health.code" (change)="updateHealth(health.code)">
+  <input type="checkbox" [name]="health.code" [value]="health.code" (change)="updatePref(health.code, healths)">
   <label [for]="health.code">{{health.name}} </label>
 </div>
 

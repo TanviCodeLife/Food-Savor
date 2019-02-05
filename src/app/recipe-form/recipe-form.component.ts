@@ -31,45 +31,14 @@ export class RecipeFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateDiet(value) {
-    for (let i = 0; i < this.diets.length; i++) {
-      if (this.diets[i].code === value) {
-        this.diets[i].checked = !this.diets[i].checked;
+  updatePref(value, prefArray){
+    for(let i = 0; i < prefArray.length; i++){
+      if(prefArray[i].code === value){
+        prefArray[i].checked = !prefArray[i].checked;
       }
     }
-    console.log("diets" + this.diets);
+    console.log("checked " + prefArray);
   }
-
-  updateHealth(value) {
-    for (let i = 0; i < this.healths.length; i++) {
-      if (this.healths[i].code === value) {
-        this.healths[i].checked = !this.healths[i].checked;
-      }
-    }
-    console.log("healths" + this.healths);
-  }
-  //
-  // createDietCode(){
-  //   this.apiDiet = [];
-  //   for (let i = 0; i < this.diets.length; i++) {
-  //     if (this.diets[i].checked === true) {
-  //       this.apiDiet.push(this.diets[i].code)
-  //     }
-  //   }
-  //   console.log("Diet: " + this.apiDiet);
-  //   return this.apiDiet;
-  // }
-  //
-  // createHealthCode(){
-  //   this.apiHealth = [];
-  //   for (let i = 0; i < this.healths.length; i++) {
-  //     if (this.healths[i].checked === true) {
-  //       this.apiHealth.push(this.healths[i].code)
-  //     }
-  //   }
-  //   console.log("Health: " + this.apiHealth);
-  //   return this.apiHealth;
-  // }
 
   createPreferencesArray(finalPref: string[], preferenceCheck: Preference ){
     for(let i = 0; i < preferenceCheck.length; i++){
@@ -80,32 +49,12 @@ export class RecipeFormComponent implements OnInit {
     return finalPref;
   }
 
-
-
-  createApiCode(ingredients: string) {
-    let regex = /\s/gi;
-    let dietCodeStr: string;
-    let healthCodeStr: string;
-
-    const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
-    if(dietCode.length === 0){
-      dietCodeStr = null;
-    } else {
-      dietCodeStr = dietCode.join(",");
+  findEmptyValues(preferenceCode: string[]){
+    let preferenceCodeStr: string = null;
+    if(preferenceCode.length !== 0){
+      preferenceCodeStr = preferenceCode.join(',')
     }
-
-    const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
-    if(healthCode.length === 0){
-      healthCodeStr = null;
-    } else {
-      healthCodeStr = healthCode.join(",");
-    }
-
-    console.log(ingredients);
-    let result = ingredients.replace(regex, '+');
-    console.log(result);
-
-    this.getRecipes(result, healthCodeStr, dietCodeStr);
+    return preferenceCodeStr;
   }
 
   getRecipes(ingredients: string, health: string, diet: string)  {
@@ -115,6 +64,16 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
+  createApiCode(ingredients: string) {
+    let regex = /\s/gi;
+    let result = ingredients.replace(regex, '+');
+
+    const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
+    const dietCodeStr: string = this.findEmptyValues(dietCode);
+    const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
+    const healthCodeStr: string = this.findEmptyValues(healthCode);
+    this.getRecipes(result, healthCodeStr, dietCodeStr);
+  }
 }
 
 type Preference = Array<{code: string, name: string, checked: boolean}>;
