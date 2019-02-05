@@ -5,7 +5,7 @@ import { RecipeApiService } from '../recipe-api.service';
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.css'],
-  providers: [RecipeApiService]
+  providers: [ RecipeApiService ]
 })
 export class RecipeFormComponent implements OnInit {
   preferences: Preference = [
@@ -42,7 +42,7 @@ export class RecipeFormComponent implements OnInit {
         this.apiCodes.push(this.preferences[i].code)
       }
     }
-    console.log(this.apiCodes);
+    console.log("API Code", this.apiCodes);
   }
 
 }
