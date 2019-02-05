@@ -25,11 +25,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // ngOnInit() {
-  //   this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
-  //     this.responseApi = response.json();
-  //   });
-  // }
+  ngOnInit() {
+    this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
+      this.responseApi = response.json();
+      console.log(this.responseApi);
+    });
+  }
 
   login() {
     this.authService.login();
