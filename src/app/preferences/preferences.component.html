@@ -1,12 +1,6 @@
-<h1>Preferences</h1>
-<p>Define your preferences and your future searches will reflect.</p>
-
-<!-- <div *ngFor="let preference of preferences">
+<div *ngFor="let preference of preferences">
   <input type="checkbox" [name]="preference.code" [value]="preference.code" (change)="updatePreference(preference.code)">
   <label [for]="preference.code">{{preference.name}} </label>
 </div>
-<br> -->
-<div *ngFor="let preference of userPreferences">
-  <input type="checkbox" [name]="preference.code" [value]="preference.code" (change)="updatePreference(preference.code)" [checked]="preference.checked">
-  <label [for]="preference.code">{{preference.name}} </label>
-</div>
+
+<p (click)="createApiCode()">Submit</p>

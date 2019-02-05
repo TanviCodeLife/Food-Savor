@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.css'],
-  providers: [ AuthService ]
 })
+
 export class PreferencesComponent implements OnInit {
-  preferences: object[] = [
+
+  preferences: Preference = [
     {"code": "high-protein", "name": "High protein", "checked": false},
     {"code": "low-fat", "name": "Low fat", "checked": false},
     {"code": "low-carb", "name": "Low carb", "checked": false},
@@ -21,49 +19,33 @@ export class PreferencesComponent implements OnInit {
     {"code": "sugar-conscious", "name": "Sugar conscious", "checked": false},
     {"code": "alcohol-free", "name": "Alcohol free", "checked": false}
   ];
-  userPreferences;
+  apiCodes: string[] = [];
 
-  constructor(private database: AngularFireDatabase, private authService: AuthService) {
+  constructor() {
 
   }
 
-  ngOnInit() {
-    let user = this.authService.getUser();
-    user.subscribe(user => {
-       this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
-        if (preferenceList.length === 0) {
-          this.authService.updatePreferences(this.preferences);
-        }
-        this.userPreferences = preferenceList;
-      });
-    });
-  }
+  ngOnInit() { }
 
   updatePreference(value){
-    let user = this.authService.getUser();
-    user.subscribe(user => {
-      this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
-        for (let i = 0; i < preferenceList.length; i++) {
-          if (preferenceList[i].code === value) {
-            if (preferenceList[i].checked === true) {
-              // preferenceList[i].update("checked": false);
-            } else if (preferenceList[i].checked === false) {
-              // preferenceList[i].update("checked": true);
-            }
-          }
-        }
-        this.authService.updatePreferences(this.userPreferences);     });
-
-    });
-
+    for (let i = 0; i < this.preferences.length; i++) {
+      if (this.preferences[i].code === value) {
+        this.preferences[i].checked = !this.preferences[i].checked;
+      }
+    }
+    console.log(this.preferences);
   }
 
-  getPreferences(){
-    let user = this.authService.getUser();
-    user.subscribe(user => {
-       this.database.list(`preferences/${user.uid}`).subscribe(preferenceList => {
-        this.userPreferences = preferenceList;
-      });
-    });
+  createApiCode() {
+    this.apiCodes = [];
+    for (let i = 0; i < this.preferences.length; i++) {
+      if (this.preferences[i].checked === true) {
+        this.apiCodes.push(this.preferences[i].code)
+      }
+    }
+    console.log(this.apiCodes);
   }
+
 }
+
+type Preference = Array<{code: string, name: string, checked: boolean}>;

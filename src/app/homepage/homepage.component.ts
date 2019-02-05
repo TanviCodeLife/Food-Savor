@@ -8,21 +8,10 @@ import { AuthService } from '../auth.service';
   providers: [ AuthService ]
 })
 export class HomepageComponent implements OnInit {
-  showUserPreferences: boolean = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  showPreferences(){
-    this.authService.user.subscribe(user => {
-      if (user === null) {
-        this.authService.login();
-      } else {
-        this.showUserPreferences = !this.showUserPreferences;
-      }
-    })
   }
 
 }
