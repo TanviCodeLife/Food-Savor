@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeApiService } from '../recipe-api.service';
 
 @Component({
-  selector: 'app-preferences',
-  templateUrl: './preferences.component.html',
-  styleUrls: ['./preferences.component.css'],
+  selector: 'app-recipe-form',
+  templateUrl: './recipe-form.component.html',
+  styleUrls: ['./recipe-form.component.css'],
+  providers: [RecipeApiService]
 })
-
-export class PreferencesComponent implements OnInit {
-
+export class RecipeFormComponent implements OnInit {
   preferences: Preference = [
     {"code": "high-protein", "name": "High protein", "checked": false},
     {"code": "low-fat", "name": "Low fat", "checked": false},
@@ -21,11 +21,10 @@ export class PreferencesComponent implements OnInit {
   ];
   apiCodes: string[] = [];
 
-  constructor() {
+  constructor() { }
 
+  ngOnInit() {
   }
-
-  ngOnInit() { }
 
   updatePreference(value){
     for (let i = 0; i < this.preferences.length; i++) {

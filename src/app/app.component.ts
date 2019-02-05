@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import { RecipeApiService } from './recipe-api.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, RecipeApiService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   user;
   private isLoggedIn: Boolean;
   private userName: String;
+  private responseApi: Object;
 
-  constructor(public authService: AuthService) {
+  constructor(private authService: AuthService, private recipeApiService: RecipeApiService) {
     this.authService.user.subscribe(user => {
       if (user == null) {
         this.isLoggedIn = false;
@@ -19,6 +22,13 @@ export class AppComponent {
         this.isLoggedIn = true;
         this.userName = user.displayName;
       }
+    });
+  }
+
+  ngOnInit() {
+    this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
+      this.responseApi = response.json();
+      console.log(this.responseApi);
     });
   }
 

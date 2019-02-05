@@ -1,0 +1,27 @@
+<!-- <form>
+  <div id="search-ingredients">
+    <label for="">Enter ingredients that you want to use:</label> <br>
+    <input type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
+  </div>
+
+  <div id="health-input" >
+    <label for="">Select preferences to filter by:</label><br>
+    <input name="health" type="checkbox" #vegan>vegan
+    <input name="health" type="checkbox" #vegetarian>vegetarian
+    <input name="health" type="checkbox" #tree-nut-free>tree-nut-free
+    <input name="health" type="checkbox" #peanut-free>peanut-free
+  </div>
+  <div id="diet-input">
+    <input name="diet" type="checkbox" #low-fat>low fat
+    <input name="diet" type="checkbox" #low-carb>low carb
+    <input name="diet" type="checkbox" #high-protien>high protein
+  </div>
+
+</form> -->
+
+<div *ngFor="let preference of preferences">
+  <input type="checkbox" [name]="preference.code" [value]="preference.code" (change)="updatePreference(preference.code)">
+  <label [for]="preference.code">{{preference.name}} </label>
+</div>
+
+<p (click)="createApiCode()">Submit</p>
