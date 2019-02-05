@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
+import { AuthService } from '../auth.service';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -11,22 +13,16 @@ import { RecipeApiService } from '../recipe-api.service';
 export class RecipeListComponent implements OnInit {
   @Input() recipes: any[];
   private responseApi: Object;
-  favorites: Favorite = [];
 
-  constructor(private recipeApiService: RecipeApiService) { }
+  constructor(private recipeApiService: RecipeApiService, private authService: AuthService) { }
 
   ngOnInit() {
-    // this.recipeApiService.getByIngredients("tomato", "vegan", null).subscribe(response => {
-    //   this.responseApi = response.json();
-    //   this.recipes = this.responseApi.hits;
-    // });
+
   }
 
   favorite(favoriteName: string, favoriteUrl: string){
-    this.favorites.push({name: favoriteName, url: favoriteUrl});
-    console.log(this.favorites);
+    let favoriteRecipe: Recipe = new Recipe(favoriteName, favoriteUrl)
+    this.authService.addFavorite(favoriteRecipe);
   }
 
 }
-
-type Favorite = Array<{name: string, url: string}>;
