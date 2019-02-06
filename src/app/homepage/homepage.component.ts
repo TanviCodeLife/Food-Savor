@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'homepage',
@@ -8,14 +10,16 @@ import { AuthService } from '../auth.service';
   providers: [ AuthService ]
 })
 export class HomepageComponent implements OnInit {
+  showFavs: boolean = true;
+  favorites: FirebaseListObservable<any[]>;
 
   constructor(private authService: AuthService) { }
 
-  getFavorites(){
-    this.authService.getFavorites();
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  getFavorites(){
+    this.favorites = this.authService.getFavorites();
   }
 
 }

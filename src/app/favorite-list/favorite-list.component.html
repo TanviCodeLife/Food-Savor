@@ -1,0 +1,3 @@
+<ul *ngFor="let favorite of favList | async">
+  <li><a href="{{ favorite?.url }}">{{ favorite?.name }}</a></li>
+</ul>

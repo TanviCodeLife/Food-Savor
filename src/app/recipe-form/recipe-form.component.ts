@@ -39,7 +39,6 @@ export class RecipeFormComponent implements OnInit {
         prefArray[i].checked = !prefArray[i].checked;
       }
     }
-    console.log("checked " + prefArray);
   }
 
   createPreferencesArray(finalPref: string[], preferenceCheck: Preference ){
@@ -63,7 +62,6 @@ export class RecipeFormComponent implements OnInit {
     this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
       this.recipes = response.json().hits;
-      console.log(this.recipes);
     });
   }
 
