@@ -14,9 +14,9 @@ favoriteArray: any[];
 
   constructor(private authService: AuthService) { }
 
+  addNote(recipeKey: string, notes: string){
+    this.authService.editFavorite(recipeKey, notes);
 
-  // favList?.subscribe(response => {
-  //   this.favoriteArray = response;
-  // });
+  }
 
 }

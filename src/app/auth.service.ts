@@ -14,7 +14,7 @@ export class AuthService {
     this.user = afAuth.authState;
     this.user.subscribe(user => {
       this.favorites = database.list(`favorites/${user.uid}`);
-      // console.log(this.favorites);
+
     })
    }
 
@@ -26,28 +26,36 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  // updatePreferences(preferences){
-  //   this.user.subscribe(user => {
-  //     let userPreference = this.database.object(`preferences/${user.uid}`)
-  //     userPreference.set(preferences);
-  //   })
-  // }
-
   addFavorite(favoriteRecipe: Recipe){
     this.favorites.push(favoriteRecipe);
   }
 
   getFavorites(){
     this.favorites.subscribe(response => {
-      console.log(response)
     })
-    // console.log(this.favorites);
+
     return this.favorites;
   }
 
-  getUser(){
-    return this.user
+  findFavorite($key: string){
+    this.favorites.subscribe(response => {
+      for(let i = 0; i < response.length; i++){
+        if(response[i].$key === $key){
+          console.log(response[i]);
+          return response[i]
+        }
+      }
+    });
   }
+
+  editFavorite(key: string, notes: string){
+    const currentFavorite: any = this.findFavorite(key);
+    currentFavorite.update({notes: notes})
+  }
+
+  // getUser(){
+  //   return this.user
+  // }
 
 
 }
