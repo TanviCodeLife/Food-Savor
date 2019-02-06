@@ -10,6 +10,7 @@ export class AuthService {
   user: Observable<firebase.User>;
   userId: string;
   favorites: FirebaseListObservable<any[]>;
+  result: any[];
 
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
@@ -29,13 +30,19 @@ export class AuthService {
   }
 
   addFavorite(favoriteRecipe: Recipe){
-    this.favorites.push(favoriteRecipe);
+    this.favorites.subscribe(favorites => {
+      this.result = favorites.filter(favorite => favorite.url === favoriteRecipe.url);
+    });
+
+    if(this.result.length === 0){
+      this.favorites.push(favoriteRecipe);
+    }
+    else{
+      alert("This recipe is already in your favorites!!")
+    }
   }
 
   getFavorites(){
-    this.favorites.subscribe(response => {
-    })
-
     return this.favorites;
   }
 
@@ -47,9 +54,12 @@ export class AuthService {
   editFavorite(key: string, notes: string){
     const currentFavorite: any = this.findFavorite(key);
     currentFavorite.update({notes: notes});
-  
   }
 
+  deleteFavorite(favoriteToDelete) {
+    const favoriteEntry = this.findFavorite(favoriteToDelete.$key);
+    favoriteEntry.remove();
+  }
   // getUser(){
   //   return this.user
   // }
