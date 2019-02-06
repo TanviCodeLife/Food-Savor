@@ -20,7 +20,7 @@ export class FavoriteListComponent implements OnInit {
   constructor(private authService: AuthService, private modalService: ModalService) { }
 
   ngOnInit(){
-    this.bodyText = 'hi!'
+    this.bodyText = 'hi!';
   }
 
   openModal(id: string){

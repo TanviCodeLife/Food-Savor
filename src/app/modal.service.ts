@@ -6,7 +6,16 @@ export class ModalService {
 
   constructor() { }
 
+  add(modal: any) {
+    this.modals.push(modal);
+  }
+
+  remove(id: string) {
+    this.modals = this.modals.filter(x => x.id !== id);
+  }
+
   open(id: string) {
+    console.log(this.modals);
     let modal: any = this.modals.filter(x => x.id === id)[0];
     modal.open();
   }
