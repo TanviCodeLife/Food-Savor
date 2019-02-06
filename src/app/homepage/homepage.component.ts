@@ -52,6 +52,7 @@ export class HomepageComponent implements OnInit {
   }
 
   getFavorites(){
+    console.log("here");
     this.favorites = this.authService.getFavorites();
   }
 
