@@ -33,6 +33,12 @@ form {
   font-family: 'Roboto Slab';
   font-weight: 100;
   text-transform: uppercase;
+  box-shadow: 0 5px 15px rgba(145,92,182,.2);
+}
+
+.btn:hover {
+  background-color: #619b48;
+  box-shadow: 0 5px 15px rgba(145,92,182,.4);
 }
 
 #check-boxes {
