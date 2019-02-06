@@ -53,6 +53,9 @@ export const recipeApiKey = "YOUR-API-KEY"
 * Angular 5.2.11
 * Typescript 2.5.3
 
+# Site Credits
+Background Image: Photo by Dose Juice on Unsplash
+
 ## License <a name="mit-lic"></a>
 
 This software is licensed under the MIT license.

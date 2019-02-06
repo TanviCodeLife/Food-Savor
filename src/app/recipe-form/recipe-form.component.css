@@ -1,0 +1,53 @@
+#search-ingredients-div {
+
+}
+
+#waste-less {
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  color: #ffab40;
+  font-size: 5em;
+  font-weight: lighter;
+  margin-bottom: 0;
+
+}
+
+#enter-ingredients {
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+  text-align: center;
+  color: #434343;
+}
+
+#search-input {
+  width: 50%;
+  margin-left: 25%
+}
+form {
+  text-align: center;
+}
+
+.btn {
+  background-color: #6aa84fff;
+  color: #fff;
+  font-family: 'Roboto Slab';
+  font-weight: 100;
+  text-transform: uppercase;
+  box-shadow: 0 5px 15px rgba(145,92,182,.2);
+}
+
+.btn:hover {
+  background-color: #619b48;
+  box-shadow: 0 5px 15px rgba(145,92,182,.4);
+}
+
+#check-boxes {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.checkbox {
+  margin-left: 15px;
+  margin-right: 15px;
+}

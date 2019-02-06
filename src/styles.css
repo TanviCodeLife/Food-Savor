@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* body {
+  background-image: url('assets/homepage-img.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+
+} */
+
+body, html {
+  height: 100%;
+  background-image: url("assets/homepage-img.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
