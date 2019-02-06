@@ -9,6 +9,19 @@
   background-color: rgba(255,255,255,.8);
   padding: 5%;
   margin: 0 auto;
+  margin-top: 20%;
+}
+
+.user {
+  background-color: rgba(255,255,255,.8);
+  color: #6aa84fff;
+  padding: 5px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  font-family: 'Roboto', serif;
+  font-size: 12px;
+  font-weight: 300;
 }
 
 #home-title {
@@ -17,6 +30,17 @@
   color: #6aa84fff;
   font-family: 'Roboto Slab';
   font-weight: 400;
+  position: fixed;
+}
+
+#waste-less {
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  color: #ffab40;
+  font-size: 6em;
+  font-weight: lighter;
+  margin-bottom: 0;
+
 }
 
 .heart-tab {
@@ -25,7 +49,7 @@
   border-radius: 5px 0px 0px 5px;
   position: fixed;
   right: 0;
-  top: 20;
+  top: 50px;
   background-color: #ffab40;
   box-shadow: 0 5px 15px rgba(145,92,182,.2);
   justify-content: center;

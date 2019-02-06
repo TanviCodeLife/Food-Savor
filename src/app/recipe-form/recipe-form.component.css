@@ -28,7 +28,8 @@ form {
 }
 
 .btn {
-  background-color: #6aa84fff;
+  /* background-color: #6aa84fff; */
+  background-color: #74b856ff;
   color: #fff;
   font-family: 'Roboto Slab';
   font-weight: 100;

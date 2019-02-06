@@ -1,3 +1,10 @@
+<div *ngIf="isLoggedIn" class="user">
+  <a>{{userName}} | </a>
+  <a (click)="logout()">Log out</a>
+</div>
+<div *ngIf ="!isLoggedIn" class="user">
+  <a (click)="login()">Log in</a>
+</div>
 
 
 <h2 id="home-title">food savor</h2>
@@ -9,6 +16,7 @@
 
 <div id="parent-search">
   <div class="home-search">
+      <h2 id="waste-less" >Waste less food</h2>
     <app-recipe-form></app-recipe-form>
   </div>
 </div>
