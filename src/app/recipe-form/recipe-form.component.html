@@ -1,18 +1,22 @@
  <form>
-  <div id="search-ingredients">
-    <label for="">Enter ingredients that you want to use:</label> <br>
-    <input type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
+  <div id="search-ingredients-div" class="form-group">
+    <h2 id="waste-less" >Waste less food.</h2>
+    <p id="enter-ingredients" for="">Find recipes to use up expiring ingredients:</p> <br>
+    <input id="search-input" class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
   </div>
-<div *ngFor="let diet of diets">
-  <input type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updatePref(diet.code, diets)">
-  <label [for]="diet.code">{{diet.name}} </label>
-</div>
-<div *ngFor="let health of healths">
-  <input type="checkbox" [name]="health.code" [value]="health.code" (change)="updatePref(health.code, healths)">
-  <label [for]="health.code">{{health.name}} </label>
-</div>
 
-<p (click)="createApiCode(ingredients.value)">Submit</p>
+  <div id="check-boxes" class="flex-wrap">
+    <div  class="checkbox" *ngFor="let diet of diets">
+      <input  type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updatePref(diet.code, diets)">
+      <label [for]="diet.code">{{diet.name}} </label>
+    </div>
+    <div class="checkbox" *ngFor="let health of healths">
+      <input  type="checkbox" [name]="health.code" [value]="health.code" (change)="updatePref(health.code, healths)">
+      <label [for]="health.code">{{health.name}} </label>
+    </div>
+  </div>
+<br>
+<p class="btn" (click)="createApiCode(ingredients.value)">Find Recipes</p>
 </form>
 
 <app-recipe-list [recipes]="recipes"></app-recipe-list>
