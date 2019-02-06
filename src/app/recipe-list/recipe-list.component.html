@@ -4,10 +4,10 @@
       <img src="{{ recipe?.recipe.image }}">
       <div class="recipe-card-content">
         <div class="label-icons">
-          <div *ngFor="let label of recipe?.recipe.healthLabels"><img src="assets/{{ label }}.jpg" class="label" data-toggle="tooltip" title="{{ label }}" alt="{{ label }}"></div>
-          <div *ngFor="let dietLabel of recipe?.recipe.dietLabels"><img src="assets/{{ dietLabel }}.jpg" class="dietLabel" data-toggle="tooltip" title="{{ dietLabel }}" alt="{{ dietLabel }}"></div>
+          <div *ngFor="let label of recipe?.recipe.healthLabels"><img src="assets/{{ label }}.png" class="label" data-toggle="tooltip" title="{{ label }}" alt="{{ label }}"></div>
+          <div *ngFor="let dietLabel of recipe?.recipe.dietLabels"><img src="assets/{{ dietLabel }}.png" class="label" data-toggle="tooltip" title="{{ dietLabel }}" alt="{{ dietLabel }}"></div>
         </div>
-        <h2>{{ recipe?.recipe.label }}</h2>
+        <h2 id="recipe-name">{{ recipe?.recipe.label }}</h2>
         <p>Source: {{ recipe?.recipe.source }}</p>
       </div></a>
       <div class="heart-icon" (click)="favorite(recipe?.recipe.label, recipe?.recipe.url, recipe?.recipe.calories)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path id="{{recipe?.recipe.calories}}" class="heart" d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg></div>

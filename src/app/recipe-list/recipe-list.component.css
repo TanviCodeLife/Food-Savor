@@ -10,6 +10,7 @@
   width: 300px;
   position: relative;
   height: 95%;
+  box-shadow: 0 5px 15px rgba(145,92,182,.2);
 }
 
 .recipe-card img:hover {
@@ -64,13 +65,22 @@ svg {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  height: 30px;
 }
 
 .label {
-  width: 25px;
-  margin-right: 10px;
+  width: 30px;
+  margin-right: 4px;
+}
+.label:hover {
+  width: 35px;
+  opacity: 100%;
 }
 
+#recipe-name {
+  margin-top: 25px;
+  font-family: 'Roboto', sans-serif;
+}
 /* @media screen and (max-width: 768px) {
   .recipe-cards {
     display: grid;
