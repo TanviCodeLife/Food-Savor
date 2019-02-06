@@ -1,5 +1,5 @@
 <ul *ngFor="let favorite of favList | async">
-  <li><a href="{{ favorite.url }}">{{ favorite.name }}</a><button (click)="openModal('custom-modal-1')">Add Note</button></li>
+  <li><a href="{{ favorite.url }}">{{ favorite.name }}</a><button (click)="addNote(favorite.$key, 'working')">Add Note</button></li>
 </ul>
 <modal id="custom-modal-1">
     <div class="modal">

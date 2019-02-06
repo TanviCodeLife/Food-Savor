@@ -8,14 +8,16 @@ import { Recipe } from './recipe.model';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
+  userId: string;
   favorites: FirebaseListObservable<any[]>;
 
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
     this.user.subscribe(user => {
       this.favorites = database.list(`favorites/${user.uid}`);
-
+      this.userId = user.uid;
     })
+
    }
 
   login() {
@@ -38,19 +40,14 @@ export class AuthService {
   }
 
   findFavorite($key: string){
-    this.favorites.subscribe(response => {
-      for(let i = 0; i < response.length; i++){
-        if(response[i].$key === $key){
-          console.log(response[i]);
-          return response[i]
-        }
-      }
-    });
+    return this.database.object(`favorites/${this.userId}/` + $key)
+
   }
 
   editFavorite(key: string, notes: string){
     const currentFavorite: any = this.findFavorite(key);
-    currentFavorite.update({notes: notes})
+    currentFavorite.update({notes: notes});
+  
   }
 
   // getUser(){
