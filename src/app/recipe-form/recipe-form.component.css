@@ -28,12 +28,14 @@ form {
 }
 
 .btn {
-  background-color: #6aa84fff;
+  /* background-color: #6aa84fff; */
+  background-color: #74b856ff;
   color: #fff;
   font-family: 'Roboto Slab';
   font-weight: 100;
   text-transform: uppercase;
   box-shadow: 0 5px 15px rgba(145,92,182,.2);
+  margin-bottom: 75px;
 }
 
 .btn:hover {
@@ -45,6 +47,9 @@ form {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
 .checkbox {
