@@ -1,8 +1,7 @@
 .recipe-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 1500px;
-  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 
 .recipe-card {
@@ -10,6 +9,7 @@
   margin: 15px;
   width: 300px;
   position: relative;
+  height: 95%;
 }
 
 .recipe-card img:hover {
@@ -60,7 +60,18 @@ svg {
   fill: red;
 }
 
-@media screen and (max-width: 768px) {
+.label-icons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.label {
+  width: 25px;
+  margin-right: 10px;
+}
+
+/* @media screen and (max-width: 768px) {
   .recipe-cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -80,4 +91,4 @@ svg {
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
   }
-}
+} */
