@@ -1,15 +1,31 @@
-#parent-search {
+.parent-search-no-recipes {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  height: 100%;
 }
 
-.home-search {
+.parent-search-showing-recipes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.home-search-no-recipes {
   width: 70%;
   background-color: rgba(255,255,255,.8);
   padding: 5%;
   margin: 0 auto;
-  margin-top: 20%;
+}
+
+.home-search-showing-recipes {
+  width: 70%;
+  background-color: rgba(255,255,255,.8);
+  padding: 5%;
+  margin: 0 auto;
+  margin-top: 60px;
 }
 
 .user {
@@ -49,7 +65,7 @@
   border-radius: 5px 0px 0px 5px;
   position: fixed;
   right: 0;
-  top: 50px;
+  top: 60px;
   background-color: #ffab40;
   box-shadow: 0 5px 15px rgba(145,92,182,.2);
   justify-content: center;

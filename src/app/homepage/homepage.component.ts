@@ -9,6 +9,7 @@ import { RecipeApiService } from '../recipe-api.service';
   providers: [ AuthService, RecipeApiService]
 })
 export class HomepageComponent implements OnInit {
+  recipeListShowing: boolean = false;
   user;
   private isLoggedIn: Boolean;
   private userName: String;
@@ -21,6 +22,26 @@ export class HomepageComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
+  }
+
+  setParentClass() {
+    if (!this.recipeListShowing) {
+      return "parent-search-no-recipes";
+    } else {
+      return "parent-search-showing-recipes";
+    }
+  }
+
+  setChildClass() {
+    if (!this.recipeListShowing) {
+      return "home-search-no-recipes";
+    } else {
+      return "home-search-showing-recipes";
+    }
+  }
+
+  showRecipes(){
+    this.recipeListShowing = true;
   }
 
   getFavorites(){

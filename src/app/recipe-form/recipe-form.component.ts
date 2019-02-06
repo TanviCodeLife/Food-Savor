@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class RecipeFormComponent implements OnInit {
     {"code": "low-fat", "name": "Low fat", "checked": false},
     {"code": "low-carb", "name": "Low carb", "checked": false},
   ]
+  @Output() clickSender = new EventEmitter();
   apiDiet: string[] = [];
   apiHealth: string[] = [];
   private responseApi: Object;
@@ -60,6 +61,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   getRecipes(ingredients: string, health: string, diet: string)  {
+    this.clickSender.emit();
     this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
       this.recipes = response.json().hits;

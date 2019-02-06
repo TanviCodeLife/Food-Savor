@@ -14,9 +14,9 @@
 </div>
 
 
-<div id="parent-search">
-  <div class="home-search">
+<div [ngClass]="setParentClass()">
+  <div [ngClass]="setChildClass()">
       <h2 id="waste-less" >Waste less food</h2>
-    <app-recipe-form></app-recipe-form>
+    <app-recipe-form (clickSender)="showRecipes()"></app-recipe-form>
   </div>
 </div>
