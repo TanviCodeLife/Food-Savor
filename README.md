@@ -1,31 +1,63 @@
-# FoodSavor
+# Food Savor
+#### Tanvi Garg, Sheila Stephen, Paige Williams, Brooke Perry, Kristin Brewer-Lowe
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
 
-## Development server
+## Description
+A JavaScript application that allows a user to search recipes based on the ingredients. The user can specify different dietary restrictions such as- Vegan, Vegetarian.The user can create an account, save favorite recipes.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Table of Contents
+  1. [Specifications](#specs-work)
+  2. [Setup on OSX](#setup)
+  3. [Technologies Used](#Tech-used)
+  4. [MIT License](#mit-lic)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Specifications <a name="specs-work"></a>
 
-## Build
+  | Behavior | Input | Output |
+  |----------|-------|--------|
+  |  The user enters Ingredients, checks the dietary restrictions | User Input: Tomato [x] Vegan | List of recipes that contain tomato and are vegan |
+  |  The User can create an account | create an account using Google Auth | Account created  |
+  | The User clicks on the heart, to add it to the favorite list| Specific recipe  | Specific recipe is added to favorites list |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Setup on OSX <a name="setup"></a>
 
-## Running unit tests
+* Install Node.js
+* Install Angular cli
+* Install Angular
+* Go to GitHub profile and clone the repo from [Food Savor](https://github.com/TanviCodeLife/Food-Savor.git). Use `git clone <project url>` command to pull it to a local repository in your Home directory.
+* Sign up for an API key here: https://www.edamam.com/
+* Get the Api key from the firebase
+* Add a file api-keys.ts to the app folder. Here is an example file:
+```
+export const masterFirebaseConfig = {
+  apiKey: "FIREBASE-API-KEY",
+  authDomain: "XXX",
+  databaseURL: "XXX",
+  projectId: "XXX",
+  storageBucket: "XXX",
+  messagingSenderId: "XXX"
+}
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+export const recipeApiAppId = "YOUR-APP-ID"
+export const recipeApiKey = "YOUR-API-KEY"
+```
+* `npm install` to install dependencies
+* `ng serve` to build and start the dev server
+* Visit `localhost:4200` to view the app running.
 
-## Running end-to-end tests
+## Technologies Used <a name="Tech-used"></a>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
+* Node.js
+* Angular CLI 1.6.5
+* Angular 5.2.11
+* Typescript 2.5.3
 
 # Site Credits
 Background Image: Photo by Dose Juice on Unsplash
+
+## License <a name="mit-lic"></a>
+
+This software is licensed under the MIT license.
+
+Copyright (c) 2018 **Tanvi Garg, Sheila Stephen, Paige Williams, Brooke Perry, Kristin Brewer-Lowe**
