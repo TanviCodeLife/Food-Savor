@@ -1,53 +1,20 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
-import { ModalService } from '../modal.service';
+import { Component, Input } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'modal',
-  template: '<ng-content></ng-content>',
-  // templateUrl: './modal.component.html',
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
-  providers: [ModalService]
+  providers: [AuthService]
+
 })
-export class ModalComponent implements OnInit, OnDestroy {
-  @Input() id: string;
-  private element: any;
+export class ModalComponent {
+@Input() selectedFav;
 
-  constructor(private modalService: ModalService, private el: ElementRef) {
-    this.element = el.nativeElement;
-  }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    let modal = this;
-    if(!this.id){
-      console.error('modal needs id');
-      return;
-    }
-
-    document.body.appendChild(this.element);
-
-    this.element.addEventListener('click', function (e: any){
-      if(e.target.className === 'modal'){
-        modal.close();
-      }
-    });
-
-    this.modalService.add(this);
-  }
-
-  ngOnDestroy(): void {
-    this.modalService.remove(this.id);
-    this.element.remove();
-
-  }
-
-  open(): void {
-    this.element.style.display = 'block';
-    document.body.classList.add('modal-open');
-  }
-
-  close(): void {
-    this.element.style.display = 'none';
-    document.body.classList.remove('modal-open');
+  addNote(modalKey: string, notes: string){
+    this.authService.editFavorite(modalKey, notes);
   }
 
 }
