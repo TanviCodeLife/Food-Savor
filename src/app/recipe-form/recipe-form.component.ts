@@ -63,7 +63,7 @@ export class RecipeFormComponent implements OnInit {
     this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
       this.recipes = response.json().hits;
-      // console.log(this.responseApi);
+      console.log(this.recipes);
     });
   }
 
