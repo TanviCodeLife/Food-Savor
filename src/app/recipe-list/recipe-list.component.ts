@@ -25,6 +25,7 @@ export class RecipeListComponent implements OnInit {
     this.authService.addFavorite(favoriteRecipe);
 
     const heart:any = document.getElementById(favoriteCal);
+    heart.style.fill = 'red';
     console.log(heart);
 
 
