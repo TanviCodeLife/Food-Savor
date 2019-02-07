@@ -1,16 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { NgModule } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { RecipeApiService } from '../recipe-api.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule
+  ],
+  declarations: [ ],
+  bootstrap: [ ]
+})
 
 @Component({
   selector: 'homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
+  animations: [
+    trigger('showFavorites', [
+      state('hide', style({
+
+      })),
+      state('show', style({
+        top: 0,
+        height: '100%',
+        width: '400px',
+        backgroundColor: '#6aa84fff',
+        borderRadius: '0px',
+        zIndex: '99999'
+      })),
+      transition('hide => show', [
+        animate('.5s')
+      ]),
+      transition('show => hide', [
+        animate('.5s')
+      ]),
+    ]),
+
+    trigger('showRecipes', [
+      state('notShowing', style({
+
+      })),
+      state('showing', style({
+        marginTop: '60px',
+      })),
+      transition('notShowing => showing', [
+        animate('1s')
+      ]),
+      transition('showing => notShowing', [
+        animate('1s')
+      ]),
+    ]),
+  ],
   providers: [ AuthService, RecipeApiService]
 })
+
 export class HomepageComponent implements OnInit {
+  showFavorites: boolean = false;
   showFavs: boolean = true;
   favorites: FirebaseListObservable<any[]>;
   recipeListShowing: boolean = false;
@@ -28,6 +85,10 @@ export class HomepageComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
+  }
+
+  ngOnInit() {
+
   }
 
   setParentClass() {
@@ -48,13 +109,11 @@ export class HomepageComponent implements OnInit {
 
   showRecipes(){
     this.recipeListShowing = true;
-  }
-
-  ngOnInit() {
+    console.log(this.recipeListShowing);
   }
 
   getFavorites(){
-    console.log("here");
+    this.showFavorites = !this.showFavorites;
     this.favorites = this.authService.getFavorites();
   }
 
