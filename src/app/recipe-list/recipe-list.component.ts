@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
 import { AuthService } from '../auth.service';
 import { Recipe } from '../recipe.model';
@@ -11,7 +11,7 @@ import * as firebase from "firebase";
   providers: [ RecipeApiService, AuthService ]
 })
 
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent {
   @Input() recipes: any[];
   private responseApi: Object;
 
@@ -22,25 +22,9 @@ export class RecipeListComponent implements OnInit {
 
   constructor(private recipeApiService: RecipeApiService, private authService: AuthService) { }
 
-  ngOnInit() {
-
-  }
-
-
   ngDoCheck() {
     this.user = firebase.auth().currentUser;
-
   }
-
-//   favorite(favoriteName: string, favoriteUrl: string, favoriteCal){
-//     let favoriteRecipe: Recipe = new Recipe(favoriteName, favoriteUrl)
-//     this.favoriteDuplicateError = false;
-//     // this.authService.addFavorite(favoriteRecipe);
-//
-//     if (this.authService.addFavorite(favoriteRecipe) === "duplicate"){
-//       this.favoriteDuplicateError = true;
-//     }
-// }
 
   favorite(favoriteName: string, favoriteUrl: string, favoriteCal) {
     if(this.user === null){
@@ -54,7 +38,6 @@ export class RecipeListComponent implements OnInit {
       }
       const heart:any = document.getElementById(favoriteCal);
       heart.style.fill = 'red';
-
     }
   }
 

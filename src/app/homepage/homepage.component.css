@@ -78,7 +78,6 @@
 .heart-tab:hover {
   background-color: #ed9e3bff;
   box-shadow: 0 5px 15px rgba(145,92,182,.4);
-  /* width: 48px; */
 }
 
 #heart-fill {

@@ -19,7 +19,6 @@ export class AuthService {
       this.favorites = database.list(`favorites/${user.uid}`);
       this.userId = user.uid;
     })
-
    }
 
    setFavorites(currentUserId: string){
@@ -33,7 +32,6 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
   }
-
 
   pushFavorite(favoriteRecipe, uid){
     this.setFavorites(uid)
@@ -55,7 +53,6 @@ export class AuthService {
 
   findFavorite($key: string){
     return this.database.object(`favorites/${this.userId}/` + $key)
-
   }
 
   editFavorite(key: string, notes: string){
@@ -71,6 +68,4 @@ export class AuthService {
   getUser(){
     return this.user
   }
-
-
 }

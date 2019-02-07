@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { RecipeApiService } from './recipe-api.service';
 
@@ -8,7 +8,7 @@ import { RecipeApiService } from './recipe-api.service';
   styleUrls: ['./app.component.css'],
   providers: [AuthService, RecipeApiService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   user;
   private isLoggedIn: Boolean;
   private userName: String;
@@ -23,10 +23,6 @@ export class AppComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
-  }
-
-  ngOnInit() {
-
   }
 
   login() {
