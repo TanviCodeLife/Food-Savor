@@ -10,7 +10,7 @@ export class AuthService {
   user: Observable<firebase.User>;
   userId: string;
   favorites: FirebaseListObservable<any[]>;
-  result: any[];
+  result: any[] = [];
 
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
@@ -33,7 +33,6 @@ export class AuthService {
     this.favorites.subscribe(favorites => {
       this.result = favorites.filter(favorite => favorite.url === favoriteRecipe.url);
     });
-
     if(this.result.length === 0){
       this.favorites.push(favoriteRecipe);
     }
