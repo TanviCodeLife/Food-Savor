@@ -15,11 +15,7 @@ export class RecipeListComponent implements OnInit {
   @Input() recipes: any[];
   private responseApi: Object;
   private user;
-  constructor(private recipeApiService: RecipeApiService, private authService: AuthService) {
-    // this.authService.user.subscribe(user => {
-    //   if (user === null)
-    // })
-   }
+  constructor(private recipeApiService: RecipeApiService, private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -27,17 +23,10 @@ export class RecipeListComponent implements OnInit {
 
   ngDoCheck() {
     this.user = firebase.auth().currentUser;
-  
+
   }
 
-  // loginCheck(){
-  //    this.authService.addFavorite();
-  //    return this.authService.checkLoginStatus();
-  // }
-
   favorite(favoriteName: string, favoriteUrl: string, favoriteCal){
-    // let login: boolean = this.loginCheck();
-    // console.log(login);
     if(this.user === null){
       this.authService.login();
       console.log(this.user);

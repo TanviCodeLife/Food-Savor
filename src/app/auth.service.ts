@@ -35,20 +35,6 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  addFavorite(){
-    this.user.subscribe(user => {
-      if(user === null){
-        this.login();
-        this.loginCheck = true;
-        let currentUserId = user.uid;
-        this.setFavorites(currentUserId);
-      }
-    });
-  }
-
-  checkLoginStatus(){
-    return this.loginCheck;
-  }
 
   pushFavorite(favoriteRecipe, uid){
     this.setFavorites(uid)
