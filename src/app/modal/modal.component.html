@@ -1,6 +1,7 @@
 <div *ngIf="selectedFav">
+  <h2>{{selectedFav.name }}</h2>
   <form id="notes-form">
-    <input type="text" name="notes" [(ngModel)]="selectedFav.notes">
-    <button type="button" name="button" (click)="addNote(selectedFav.$key, selectedFav.notes)">Add Notes</button>
+    <textarea rows="4" type="textarea" name="notes" [(ngModel)]="selectedFav.notes" class="form-control"></textarea><br>
+    <button type="button" name="button" (click)="addNote(selectedFav.$key, selectedFav.notes)" class="btn">UPDATE</button>
   </form>
 </div>

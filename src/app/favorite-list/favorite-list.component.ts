@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
+// import * as firebase from "firebase";
 
 @Component({
   selector: 'app-favorite-list',
@@ -15,13 +16,11 @@ export class FavoriteListComponent implements OnInit {
   showModal: boolean = false;
   selectedFavorite = null;
   @Output() clickSender = new EventEmitter();
-  private bodyText: string;
-
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(){
-    this.bodyText = 'hi!';
+
   }
 
   openModal(favoriteToEdit){
