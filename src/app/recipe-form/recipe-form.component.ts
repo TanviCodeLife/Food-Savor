@@ -35,7 +35,6 @@ export class RecipeFormComponent implements OnInit {
   }
 
   updatePref(value, prefArray){
-    // let value = document.formId.diet.value;
     for(let i = 0; i < prefArray.length; i++){
       if(prefArray[i].code === value){
         prefArray[i].checked = !prefArray[i].checked;
@@ -68,16 +67,16 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  createApiCode(ingredients: string) {
-    this.apiDiet = [];
-    this.apiHealth = [];
+  createApiCode(ingredients: string, diet: string, health: string) {
+    if (diet === "") {
+      diet = null;
+    }
+    if (health === "") {
+      health = null;
+    }
     let regex = /\s/gi;
     let result = ingredients.replace(regex, '+');
-    const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
-    const dietCodeStr: string = this.findEmptyValues(dietCode);
-    const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
-    const healthCodeStr: string = this.findEmptyValues(healthCode);
-    this.getRecipes(result, healthCodeStr, dietCodeStr);
+    this.getRecipes(result, health, diet);
   }
 }
 

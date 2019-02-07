@@ -1,25 +1,28 @@
  <form >
   <div id="search-ingredients-div" class="form-group">
     <p id="enter-ingredients" for="">Find recipes to use up expiring ingredients:</p> <br>
-    <input id="search-input" class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
+    <input class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
   </div>
 
-  <div id="radio" class="flex-wrap">
-    <p>Diet preferences:</p>
-
-    <div  class="radio" *ngFor="let diet of diets">
-      <input  type="radio" name="diet" [value]="diet.code" (change)="updatePref(diet.code, diets)">
-      <label [for]="diet.code">{{diet.name}} </label>
+  <div class="preference-dropdowns">
+    <div class = "diet">
+      <p class="preference-label">Diet preferences</p>
+      <select #diet class="form-control">
+        <option [value]="''"></option>
+        <option *ngFor="let diet of diets" [value]="diet.code">{{diet.name}} </option>
+      </select>
     </div>
 
-    <p>Health preferences:</p>
-    <div class="radio" *ngFor="let health of healths">
-      <input  type="radio" name="health" [value]="health.code" (change)="updatePref(health.code, healths)">
-      <label [for]="health.code">{{health.name}} </label>
+    <div class = "health">
+      <p class="preference-label">Health preferences</p>
+      <select #health class="form-control">
+        <option [value]="''"></option>
+        <option *ngFor="let health of healths" [value]="health.code">{{health.name}} </option>
+      </select>
     </div>
   </div>
-<br>
-<p class="btn" (click)="createApiCode(ingredients.value)">Find Recipes</p>
+
+<p class="btn" (click)="createApiCode(ingredients.value, diet.value, health.value)">Find Recipes</p>
 </form>
 
 <app-recipe-list [recipes]="recipes"></app-recipe-list>
