@@ -81,6 +81,21 @@ svg {
   margin-top: 25px;
   font-family: 'Roboto', sans-serif;
 }
+
+.duplicateError {
+  position: absolute;
+  top: 2%;
+  left: 32%;
+  width: 40%;
+  border: solid 1px #74b856ff;
+  background-color: rgba(116,184,86, .8);
+  border-radius: 5px;
+  padding: 12px 20px 12px 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+}
+
 /* @media screen and (max-width: 768px) {
   .recipe-cards {
     display: grid;
