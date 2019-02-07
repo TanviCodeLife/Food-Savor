@@ -71,13 +71,13 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  setEmptyIngreds(ingredients: string) {
-    if(ingredients !== '') {
-      return "has-ingreds";
-    } else {
-      return "empty-ingreds";
-    }
-  }
+  // setEmptyIngreds(ingredients: string) {
+  //   if(ingredients !== '') {
+  //     return "has-ingreds";
+  //   } else {
+  //     return "empty-ingreds";
+  //   }
+  // }
 
   createApiCode(ingredients: string) {
     console.log(ingredients);
