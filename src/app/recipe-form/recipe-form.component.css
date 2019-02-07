@@ -1,16 +1,12 @@
-.diet{
-width: 500px;
-margin-left: 260px;
-font-family: 'Roboto Slab', serif;
-font-weight: bold;
-}
-
-.health{
-  width: 500px;
-  margin-left: -155px;
+/* .diet{
   font-family: 'Roboto Slab', serif;
   font-weight: bold;
 }
+
+.health{
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+} */
 
 #waste-less {
   text-align: center;
@@ -29,11 +25,16 @@ font-weight: bold;
   color: #434343;
 }
 
-.form-control {
+.ingredients {
   width: 40%;
   margin-left: 30%;
   margin-top: 0px;
   margin-bottom: 10px;
+}
+
+.preferences {
+  width: 150px;
+  margin-right: 15px;
 }
 
 form {
@@ -56,14 +57,14 @@ form {
   box-shadow: 0 5px 15px rgba(145,92,182,.4);
 }
 
-.radioGroup  {
+/* .radioGroup  {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   font-weight: lighter;
   font-size: 16px;
-}
+} */
 
 .radio {
   margin-left: 10px;
@@ -74,12 +75,11 @@ form {
   color: #434343;
   font-weight: lighter;
   text-align: left;
-  margin-left: 30%;
   margin-bottom: 0px;
 }
 
 .preference-dropdowns {
   display: flex;
   flex-flow: row wrap;
-  text-align: center;
+  justify-content: center;
 }

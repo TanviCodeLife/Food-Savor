@@ -1,13 +1,13 @@
  <form >
   <div id="search-ingredients-div" class="form-group">
     <p id="enter-ingredients" for="">Find recipes to use up expiring ingredients:</p> <br>
-    <input class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
+    <input class="form-control ingredients" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
   </div>
 
   <div class="preference-dropdowns">
     <div class = "diet">
       <p class="preference-label">Diet preferences</p>
-      <select #diet class="form-control">
+      <select #diet class="form-control preferences">
         <option [value]="''"></option>
         <option *ngFor="let diet of diets" [value]="diet.code">{{diet.name}} </option>
       </select>
@@ -15,7 +15,7 @@
 
     <div class = "health">
       <p class="preference-label">Health preferences</p>
-      <select #health class="form-control">
+      <select #health class="form-control preferences">
         <option [value]="''"></option>
         <option *ngFor="let health of healths" [value]="health.code">{{health.name}} </option>
       </select>
