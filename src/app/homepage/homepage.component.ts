@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgModule } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -49,26 +49,11 @@ import {
         animate('.5s')
       ]),
     ]),
-
-    trigger('showRecipes', [
-      state('notShowing', style({
-
-      })),
-      state('showing', style({
-        marginTop: '60px',
-      })),
-      transition('notShowing => showing', [
-        animate('1s')
-      ]),
-      transition('showing => notShowing', [
-        animate('1s')
-      ]),
-    ]),
   ],
   providers: [ AuthService, RecipeApiService]
 })
 
-export class HomepageComponent implements OnInit {
+export class HomepageComponent {
   showFavorites: boolean = false;
   showFavs: boolean = true;
   favorites: FirebaseListObservable<any[]>;
@@ -87,10 +72,6 @@ export class HomepageComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
-  }
-
-  ngOnInit() {
-
   }
 
   ngDoCheck(){
@@ -118,8 +99,10 @@ export class HomepageComponent implements OnInit {
   }
 
   getFavorites(){
-    this.showFavorites = !this.showFavorites;
-    this.favorites = this.authService.getFavorites(this.user.uid);
+    if(this.user !== null){
+      this.showFavorites = !this.showFavorites;
+      this.favorites = this.authService.getFavorites(this.user.uid);
+    }
   }
 
   closeFavorites(){

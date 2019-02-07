@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
-// import * as firebase from "firebase";
 
 @Component({
   selector: 'app-favorite-list',
@@ -10,7 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./favorite-list.component.css'],
   providers: [AuthService]
 })
-export class FavoriteListComponent implements OnInit {
+export class FavoriteListComponent {
   @Input() favList: FirebaseListObservable<any[]>;
   favoriteArray: any[];
   showModal: boolean = false;
@@ -19,22 +18,9 @@ export class FavoriteListComponent implements OnInit {
   private user;
   constructor(private authService: AuthService) { }
 
-  ngOnInit(){
-
-  }
-
-  // ngDoCheck(){
-  //   this.user = firebase.auth().currentUser;
-  // }
-
-  // getFavlist(){
-  //   this.favList = this.authService.setFavorites(this.user.uid)
-  // }
-
   openModal(favoriteToEdit){
     this.showModal = true;
     this.selectedFavorite = favoriteToEdit;
-    console.log(this.selectedFavorite);
     this.clickSender.emit(favoriteToEdit)
   }
 

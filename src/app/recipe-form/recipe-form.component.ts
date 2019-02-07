@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
 import { FormGroup, FormControl, Validators, FormBuilder }
     from '@angular/forms';
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators, FormBuilder }
   providers: [ RecipeApiService ]
 })
 
-export class RecipeFormComponent implements OnInit {
+export class RecipeFormComponent {
   showNoIngreds: boolean = false;
 
   healths: Preference = [
@@ -35,8 +35,6 @@ export class RecipeFormComponent implements OnInit {
   constructor(private recipeApiService: RecipeApiService) { }
     recipes: any[] = null;
 
-  ngOnInit() {
-  }
 
   updatePref(value, prefArray){
     for(let i = 0; i < prefArray.length; i++){
@@ -44,23 +42,6 @@ export class RecipeFormComponent implements OnInit {
         prefArray[i].checked = !prefArray[i].checked;
       }
     }
-  }
-
-  createPreferencesArray(finalPref: string[], preferenceCheck: Preference ){
-    for(let i = 0; i < preferenceCheck.length; i++){
-      if(preferenceCheck[i].checked === true) {
-        finalPref.push(preferenceCheck[i].code)
-      }
-    }
-    return finalPref;
-  }
-
-  findEmptyValues(preferenceCode: string[]){
-    let preferenceCodeStr: string = null;
-    if(preferenceCode.length !== 0){
-      preferenceCodeStr = preferenceCode.join(',')
-    }
-    return preferenceCodeStr;
   }
 
   getRecipes(ingredients: string, health: string, diet: string)  {
@@ -82,17 +63,10 @@ createApiCode(ingredients: string, diet: string, health: string) {
     if(ingredients === '') {
       this.showNoIngreds = true;
     } else {
-      this.apiDiet = [];
-      this.apiHealth = [];
       let regex = /\s/gi;
       let result = ingredients.replace(regex, '+');
-      const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
-      const dietCodeStr: string = this.findEmptyValues(dietCode);
-      const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
-      const healthCodeStr: string = this.findEmptyValues(healthCode);
-      this.getRecipes(result, healthCodeStr, dietCodeStr);
+      this.getRecipes(result, health, diet);
     }
-
   }
 }
 
