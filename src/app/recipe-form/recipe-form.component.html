@@ -1,22 +1,29 @@
- <form>
+ <form >
   <div id="search-ingredients-div" class="form-group">
     <p id="enter-ingredients" for="">Find recipes to use up expiring ingredients:</p> <br>
-    <input id="search-input" [ngClass]="" class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients required>
+<input id="search-input" [ngClass]="" class="form-control ingredients" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients required>
     <p *ngIf="showNoIngreds" class="empty-ingreds">Please enter at least 1 ingredient.</p>
   </div>
 
-  <div id="check-boxes" class="flex-wrap">
-    <div  class="checkbox" *ngFor="let diet of diets">
-      <input  type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updatePref(diet.code, diets)">
-      <label [for]="diet.code">{{diet.name}} </label>
+  <div class="preference-dropdowns">
+    <div class = "diet">
+      <p class="preference-label">Diet preferences</p>
+      <select #diet class="form-control preferences">
+        <option [value]="''"></option>
+        <option *ngFor="let diet of diets" [value]="diet.code">{{diet.name}} </option>
+      </select>
     </div>
-    <div class="checkbox" *ngFor="let health of healths">
-      <input  type="checkbox" [name]="health.code" [value]="health.code" (change)="updatePref(health.code, healths)">
-      <label [for]="health.code">{{health.name}} </label>
+
+    <div class = "health">
+      <p class="preference-label">Health preferences</p>
+      <select #health class="form-control preferences">
+        <option [value]="''"></option>
+        <option *ngFor="let health of healths" [value]="health.code">{{health.name}} </option>
+      </select>
     </div>
   </div>
-<br>
-<p class="btn" (click)="createApiCode(ingredients.value)">Find Recipes</p>
+
+<p class="btn" (click)="createApiCode(ingredients.value, diet.value, health.value)">Find Recipes</p>
 </form>
 
 <app-recipe-list [recipes]="recipes"></app-recipe-list>

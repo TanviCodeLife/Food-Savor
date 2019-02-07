@@ -71,19 +71,15 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  // setEmptyIngreds(ingredients: string) {
-  //   if(ingredients !== '') {
-  //     return "has-ingreds";
-  //   } else {
-  //     return "empty-ingreds";
-  //   }
-  // }
-
-  createApiCode(ingredients: string) {
-    console.log(ingredients);
+createApiCode(ingredients: string, diet: string, health: string) {
     this.showNoIngreds = false;
+    if (diet === "") {
+      diet = null;
+    }
+    if (health === "") {
+      health = null;
+    }
     if(ingredients === '') {
-      console.log(ingredients);
       this.showNoIngreds = true;
     } else {
       this.apiDiet = [];
@@ -96,6 +92,7 @@ export class RecipeFormComponent implements OnInit {
       const healthCodeStr: string = this.findEmptyValues(healthCode);
       this.getRecipes(result, healthCodeStr, dietCodeStr);
     }
+
   }
 }
 
