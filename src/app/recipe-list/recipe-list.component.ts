@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
 import { AuthService } from '../auth.service';
 import { Recipe } from '../recipe.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-recipe-list',

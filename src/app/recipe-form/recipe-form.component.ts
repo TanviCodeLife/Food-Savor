@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-recipe-form',
@@ -62,10 +63,15 @@ export class RecipeFormComponent implements OnInit {
   getRecipes(ingredients: string, health: string, diet: string)  {
     this.recipes = [];
     this.recipeApiService.getByIngredients(ingredients, health, diet).subscribe(response => {
-      this.recipes = response.json().hits;
+      this.recipes = response.json().hits
+      // .catch(this.errorHandler);
       console.log(this.recipes);
     });
   }
+  //
+  // errorHandler(error: HttpErrorResponse) {
+  //   return Observable.throw(error.message || "Server Error");
+  // }
 
   createApiCode(ingredients: string) {
     this.apiDiet = [];
