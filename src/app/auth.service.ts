@@ -8,17 +8,23 @@ import { Recipe } from './recipe.model';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  userId: string;
+  userId: string = null;
   favorites: FirebaseListObservable<any[]>;
   result: any[] = [];
+  loginCheck: boolean = false;
 
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
     this.user.subscribe(user => {
       this.favorites = database.list(`favorites/${user.uid}`);
       this.userId = user.uid;
+      console.log(this.userId)
     })
 
+   }
+
+   setFavorites(currentUserId: string){
+     return this.favorites = this.database.list(`favorites/${currentUserId}`)
    }
 
   login() {
@@ -29,14 +35,29 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  addFavorite(favoriteRecipe: Recipe){
+  addFavorite(){
+    this.user.subscribe(user => {
+      if(user === null){
+        this.login();
+        this.loginCheck = true;
+        let currentUserId = user.uid;
+        this.setFavorites(currentUserId);
+      }
+    });
+  }
+
+  checkLoginStatus(){
+    return this.loginCheck;
+  }
+
+  pushFavorite(favoriteRecipe, uid){
+    this.setFavorites(uid)
     this.favorites.subscribe(favorites => {
       this.result = favorites.filter(favorite => favorite.url === favoriteRecipe.url);
     });
     if(this.result.length === 0){
       this.favorites.push(favoriteRecipe);
-    }
-    else{
+    } else {
       alert("This recipe is already in your favorites!!")
     }
   }
@@ -59,9 +80,10 @@ export class AuthService {
     const favoriteEntry = this.findFavorite(favoriteToDelete.$key);
     favoriteEntry.remove();
   }
-  // getUser(){
-  //   return this.user
-  // }
+
+  getUser(){
+    return this.user
+  }
 
 
 }

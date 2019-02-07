@@ -109,7 +109,6 @@ export class HomepageComponent implements OnInit {
 
   showRecipes(){
     this.recipeListShowing = true;
-    console.log(this.recipeListShowing);
   }
 
   getFavorites(){
