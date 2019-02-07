@@ -56,3 +56,11 @@ form {
   margin-left: 15px;
   margin-right: 15px;
 }
+
+.empty-ingreds {
+  margin-top: 5px;
+  color: red;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
+}
