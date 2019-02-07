@@ -1,16 +1,20 @@
- <form>
+ <form >
   <div id="search-ingredients-div" class="form-group">
     <p id="enter-ingredients" for="">Find recipes to use up expiring ingredients:</p> <br>
     <input id="search-input" class="form-control" type="text" placeholder="Ex: tomatoes, onions, rice" #ingredients>
   </div>
 
-  <div id="check-boxes" class="flex-wrap">
-    <div  class="checkbox" *ngFor="let diet of diets">
-      <input  type="checkbox" [name]="diet.code" [value]="diet.code" (change)="updatePref(diet.code, diets)">
+  <div id="radio" class="flex-wrap">
+    <p>Diet preferences:</p>
+
+    <div  class="radio" *ngFor="let diet of diets">
+      <input  type="radio" name="diet" [value]="diet.code" (change)="updatePref(diet.code, diets)">
       <label [for]="diet.code">{{diet.name}} </label>
     </div>
-    <div class="checkbox" *ngFor="let health of healths">
-      <input  type="checkbox" [name]="health.code" [value]="health.code" (change)="updatePref(health.code, healths)">
+
+    <p>Health preferences:</p>
+    <div class="radio" *ngFor="let health of healths">
+      <input  type="radio" name="health" [value]="health.code" (change)="updatePref(health.code, healths)">
       <label [for]="health.code">{{health.name}} </label>
     </div>
   </div>

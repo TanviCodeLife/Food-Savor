@@ -35,6 +35,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   updatePref(value, prefArray){
+    // let value = document.formId.diet.value;
     for(let i = 0; i < prefArray.length; i++){
       if(prefArray[i].code === value){
         prefArray[i].checked = !prefArray[i].checked;
