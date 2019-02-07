@@ -46,7 +46,7 @@ export class RecipeListComponent implements OnInit {
     if(this.user === null){
       this.authService.login();
       console.log(this.user);
-    } else {
+    } else{
       let currentUserId = this.user.uid
       let favoriteRecipe: Recipe = new Recipe(favoriteName, favoriteUrl)
       if(this.authService.pushFavorite(favoriteRecipe, currentUserId) === "duplicate") {

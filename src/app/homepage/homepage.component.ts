@@ -118,8 +118,10 @@ export class HomepageComponent implements OnInit {
   }
 
   getFavorites(){
-    this.showFavorites = !this.showFavorites;
-    this.favorites = this.authService.getFavorites(this.user.uid);
+    if(this.user !== null){      
+      this.showFavorites = !this.showFavorites;
+      this.favorites = this.authService.getFavorites(this.user.uid);
+    }
   }
 
   closeFavorites(){
