@@ -17,6 +17,8 @@ export class HomepageComponent implements OnInit {
   user;
   private isLoggedIn: Boolean;
   private userName: String;
+  selectedFavorite = null;
+
   constructor(private authService: AuthService, private recipeApiService: RecipeApiService) {
     this.authService.user.subscribe(user => {
       if (user == null) {
@@ -54,6 +56,14 @@ export class HomepageComponent implements OnInit {
   getFavorites(){
     console.log("here");
     this.favorites = this.authService.getFavorites();
+  }
+
+  editFavorite(clickedFavorite) {
+    this.selectedFavorite = clickedFavorite;
+  }
+
+  finishedEditing(){
+    this.selectedFavorite = null;
   }
 
   login() {

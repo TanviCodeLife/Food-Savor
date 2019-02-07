@@ -22,5 +22,9 @@
 </div>
 
 <div>
-  <app-favorite-list [favList]="favorites"></app-favorite-list>
+  <app-favorite-list [favList]="favorites" (clickSender)="editFavorite($event)"></app-favorite-list>
 </div>
+
+  <div>
+    <app-modal [selectedFav]="selectedFavorite" (clickedDone)="finishedEditing()"></app-modal>
+  </div>

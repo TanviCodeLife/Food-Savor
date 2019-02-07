@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="selectedFav">
   <form id="notes-form">
     <input type="text" name="notes" [(ngModel)]="selectedFav.notes">
     <button type="button" name="button" (click)="addNote(selectedFav.$key, selectedFav.notes)">Add Notes</button>

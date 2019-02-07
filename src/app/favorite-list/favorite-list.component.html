@@ -1,7 +1,6 @@
 <ul *ngFor="let favorite of favList | async">
   <li><a href="{{ favorite.url }}">{{ favorite.name }}</a>
-      <button (click)="openModal()">Add Note</button>
+      <button (click)="openModal(favorite)">Add Note</button>
       <button type="button" name="button" (click)="deleteFavorite(favorite)">Delete</button>
-      <div *ngIf="showModal"><app-modal [selectedFav]="favorite"></app-modal></div>
   </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,11 +10,13 @@ import { AuthService } from '../auth.service';
 })
 export class ModalComponent {
 @Input() selectedFav;
+@Output() clickedDone = new EventEmitter();
 
   constructor(private authService: AuthService) {}
 
   addNote(modalKey: string, notes: string){
     this.authService.editFavorite(modalKey, notes);
+    this.clickedDone.emit();
   }
 
 }

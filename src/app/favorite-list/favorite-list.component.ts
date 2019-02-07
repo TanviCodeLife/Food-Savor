@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
@@ -13,7 +13,8 @@ export class FavoriteListComponent implements OnInit {
   @Input() favList: FirebaseListObservable<any[]>;
   favoriteArray: any[];
   showModal: boolean = false;
-
+  selectedFavorite = null;
+  @Output() clickSender = new EventEmitter();
   private bodyText: string;
 
 
@@ -23,8 +24,11 @@ export class FavoriteListComponent implements OnInit {
     this.bodyText = 'hi!';
   }
 
-  openModal(){
+  openModal(favoriteToEdit){
     this.showModal = true;
+    this.selectedFavorite = favoriteToEdit;
+    console.log(this.selectedFavorite);
+    this.clickSender.emit(favoriteToEdit)
   }
 
   deleteFavorite(favorite){
