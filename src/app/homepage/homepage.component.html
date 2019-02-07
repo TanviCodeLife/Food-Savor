@@ -16,12 +16,7 @@
     <span class="close">X</span>
     <div class="fav">
       <h2>Your Favorites</h2>
-      <ul>
-        <li>fav</li>
-        <li>fav</li>
-        <li>fav</li>
-        <li>fav</li>
-      </ul>
+      <app-favorite-list [favList]="favorites" (clickSender)="editFavorite($event)"></app-favorite-list>
     </div>
   </div>
 </div>
@@ -32,4 +27,8 @@
       <h2 id="waste-less" >Waste less food</h2>
     <app-recipe-form (clickSender)="showRecipes()"></app-recipe-form>
   </div>
+</div>
+
+<div id="editNote">
+  <app-modal [selectedFav]="selectedFavorite" (clickedDone)="finishedEditing()"></app-modal>
 </div>
