@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RecipeApiService } from '../recipe-api.service';
+import { FormGroup, FormControl, Validators, FormBuilder }
+    from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-form',
@@ -9,6 +11,8 @@ import { RecipeApiService } from '../recipe-api.service';
 })
 
 export class RecipeFormComponent implements OnInit {
+  showNoIngreds: boolean = false;
+
   healths: Preference = [
     {"code": "vegan", "name": "Vegan", "checked": false},
     {"code": "vegetarian", "name": "Vegetarian", "checked": false},
@@ -67,17 +71,30 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  createApiCode(ingredients: string) {
-    this.apiDiet = [];
-    this.apiHealth = [];
-    let regex = /\s/gi;
-    let result = ingredients.replace(regex, '+');
-    const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
-    const dietCodeStr: string = this.findEmptyValues(dietCode);
-    const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
-    const healthCodeStr: string = this.findEmptyValues(healthCode);
-    this.getRecipes(result, healthCodeStr, dietCodeStr);
+createApiCode(ingredients: string, diet: string, health: string) {
+    this.showNoIngreds = false;
+    if (diet === "") {
+      diet = null;
+    }
+    if (health === "") {
+      health = null;
+    }
+    if(ingredients === '') {
+      this.showNoIngreds = true;
+    } else {
+      this.apiDiet = [];
+      this.apiHealth = [];
+      let regex = /\s/gi;
+      let result = ingredients.replace(regex, '+');
+      const dietCode: string[] = this.createPreferencesArray(this.apiDiet, this.diets);
+      const dietCodeStr: string = this.findEmptyValues(dietCode);
+      const healthCode: string[] = this.createPreferencesArray(this.apiHealth, this.healths);
+      const healthCodeStr: string = this.findEmptyValues(healthCode);
+      this.getRecipes(result, healthCodeStr, dietCodeStr);
+    }
+
   }
 }
+
 
 type Preference = Array<{code: string, name: string, checked: boolean}>;
