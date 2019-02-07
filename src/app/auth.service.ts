@@ -42,8 +42,9 @@ export class AuthService {
     });
     if(this.result.length === 0){
       this.favorites.push(favoriteRecipe);
-    } else {
-      alert("This recipe is already in your favorites!!")
+    }
+    else{
+      return "duplicate";
     }
   }
 
