@@ -22,7 +22,6 @@ export class RecipeListComponent implements OnInit {
 
   favorite(favoriteName: string, favoriteUrl: string, favoriteCal){
     let favoriteRecipe: Recipe = new Recipe(favoriteName, favoriteUrl)
-
     this.authService.addFavorite(favoriteRecipe);
 
     const heart:any = document.getElementById(favoriteCal);
