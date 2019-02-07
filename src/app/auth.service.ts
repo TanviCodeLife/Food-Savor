@@ -18,7 +18,6 @@ export class AuthService {
     this.user.subscribe(user => {
       this.favorites = database.list(`favorites/${user.uid}`);
       this.userId = user.uid;
-      console.log(this.userId)
     })
 
    }
@@ -48,7 +47,8 @@ export class AuthService {
     }
   }
 
-  getFavorites(){
+  getFavorites(uid: string){
+    this.setFavorites(uid)
     return this.favorites;
   }
 

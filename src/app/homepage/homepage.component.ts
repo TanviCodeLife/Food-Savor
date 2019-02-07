@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { RecipeApiService } from '../recipe-api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import * as firebase from "firebase";
+
 import {
   trigger,
   state,
@@ -71,7 +73,7 @@ export class HomepageComponent implements OnInit {
   showFavs: boolean = true;
   favorites: FirebaseListObservable<any[]>;
   recipeListShowing: boolean = false;
-  user;
+  private user;
   private isLoggedIn: Boolean;
   private userName: String;
   selectedFavorite = null;
@@ -89,6 +91,10 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngDoCheck(){
+    this.user = firebase.auth().currentUser;
   }
 
   setParentClass() {
@@ -113,7 +119,7 @@ export class HomepageComponent implements OnInit {
 
   getFavorites(){
     this.showFavorites = !this.showFavorites;
-    this.favorites = this.authService.getFavorites();
+    this.favorites = this.authService.getFavorites(this.user.uid);
   }
 
   editFavorite(clickedFavorite) {
