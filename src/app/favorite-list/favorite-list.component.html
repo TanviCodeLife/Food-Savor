@@ -1,6 +1,5 @@
-<ul *ngFor="let favorite of favList | async">
-  <li><a href="{{ favorite.url }}">{{ favorite.name }}</a>
-      <button (click)="openModal(favorite)">Add Note</button>
-      <button type="button" name="button" (click)="deleteFavorite(favorite)">Delete</button>
-  </li>
-</ul>
+<div *ngFor="let favorite of favList | async" class="favoriteItem">
+  <div><a href="{{ favorite.url }}" target="blank"><h3>{{ favorite.name }}</h3></a></div>
+  <div><img class="pencil" (click)="openModal(favorite)" src="assets/pencil.png" alt="Notes"></div>
+  <div><span class="delete" alt="Delete" (click)="deleteFavorite(favorite)">x</span></div>
+</div>

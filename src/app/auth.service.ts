@@ -8,9 +8,10 @@ import { Recipe } from './recipe.model';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  userId: string;
+  userId: string = null;
   favorites: FirebaseListObservable<any[]>;
   result: any[] = [];
+  loginCheck: boolean = false;
 
   constructor( private database: AngularFireDatabase, public afAuth: AngularFireAuth ) {
     this.user = afAuth.authState;
@@ -21,6 +22,10 @@ export class AuthService {
 
    }
 
+   setFavorites(currentUserId: string){
+     return this.favorites = this.database.list(`favorites/${currentUserId}`)
+   }
+
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
@@ -29,7 +34,9 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  addFavorite(favoriteRecipe: Recipe){
+
+  pushFavorite(favoriteRecipe, uid){
+    this.setFavorites(uid)
     this.favorites.subscribe(favorites => {
       this.result = favorites.filter(favorite => favorite.url === favoriteRecipe.url);
     });
@@ -37,11 +44,12 @@ export class AuthService {
       this.favorites.push(favoriteRecipe);
     }
     else{
-      alert("This recipe is already in your favorites!!")
+      return "duplicate";
     }
   }
 
-  getFavorites(){
+  getFavorites(uid: string){
+    this.setFavorites(uid)
     return this.favorites;
   }
 
@@ -59,9 +67,10 @@ export class AuthService {
     const favoriteEntry = this.findFavorite(favoriteToDelete.$key);
     favoriteEntry.remove();
   }
-  // getUser(){
-  //   return this.user
-  // }
+
+  getUser(){
+    return this.user
+  }
 
 
 }
