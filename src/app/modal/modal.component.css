@@ -1,0 +1,24 @@
+.btn {
+  background-color: #74b856ff;
+  color: #fff;
+  font-family: 'Roboto Slab';
+  font-weight: 100;
+  text-transform: uppercase;
+  box-shadow: 0 5px 15px rgba(145,92,182,.2);
+}
+
+.btn:hover {
+  background-color: #74b856ff;
+  box-shadow: 0 5px 15px rgba(145,92,182,.4);
+}
+
+h2 {
+  font-family: 'Roboto Slab', sans-serif;
+  color: #ffab40;
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  overflow-y: show;
+}

@@ -37,7 +37,7 @@ export class AuthService {
       this.favorites.push(favoriteRecipe);
     }
     else{
-      alert("This recipe is already in your favorites!!")
+      return "duplicate";
     }
   }
 
