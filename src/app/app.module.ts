@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 export const firebaseConfig = {
@@ -24,7 +26,9 @@ export const firebaseConfig = {
     AppComponent,
     HomepageComponent,
     RecipeListComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    FavoriteListComponent,
+    ModalComponent
 
   ],
   imports: [

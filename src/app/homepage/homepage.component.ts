@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 import { RecipeApiService } from '../recipe-api.service';
 
 @Component({
@@ -9,10 +11,14 @@ import { RecipeApiService } from '../recipe-api.service';
   providers: [ AuthService, RecipeApiService]
 })
 export class HomepageComponent implements OnInit {
+  showFavs: boolean = true;
+  favorites: FirebaseListObservable<any[]>;
   recipeListShowing: boolean = false;
   user;
   private isLoggedIn: Boolean;
   private userName: String;
+  selectedFavorite = null;
+
   constructor(private authService: AuthService, private recipeApiService: RecipeApiService) {
     this.authService.user.subscribe(user => {
       if (user == null) {
@@ -44,13 +50,20 @@ export class HomepageComponent implements OnInit {
     this.recipeListShowing = true;
   }
 
-  getFavorites(){
-    this.authService.getFavorites();
+  ngOnInit() {
   }
 
+  getFavorites(){
+    console.log("here");
+    this.favorites = this.authService.getFavorites();
+  }
 
-  ngOnInit() {
+  editFavorite(clickedFavorite) {
+    this.selectedFavorite = clickedFavorite;
+  }
 
+  finishedEditing(){
+    this.selectedFavorite = null;
   }
 
   login() {
