@@ -5,6 +5,8 @@
 ## Description
 A JavaScript application that allows a user to search recipes based on the ingredients. The user can specify different dietary restrictions such as- Vegan, Vegetarian.The user can create an account, save favorite recipes.
 
+View live app [here](https://foodsavorapp-b49fd.firebaseapp.com/)
+
 ## Table of Contents
   1. [Specifications](#specs-work)
   2. [Setup on OSX](#setup)
